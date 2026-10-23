@@ -1,0 +1,29 @@
+# Dépendances de l'application SiemDiag (app.py) - Python 3.10 à 3.12
+#
+#   python -m venv .venv
+#   .venv\Scripts\activate          (Windows)   |   source .venv/bin/activate   (Linux / macOS)
+#   pip install -r requirements.txt
+#   python app.py
+#
+# PyTorch avec CUDA : sous Windows, le PyTorch de PyPI est CPU uniquement. L'index ci-dessous fournit
+# les builds CUDA 12.6 (GPU NVIDIA, pilote récent). Sans GPU NVIDIA, l'index est simplement ignoré
+# et l'application tourne sur CPU (lentement). Vérification :
+#   python -c "import torch; print(torch.cuda.is_available())"
+--extra-index-url https://download.pytorch.org/whl/cu126
+
+torch>=2.4
+
+# LLM Qwen 2.5 3B Instruct quantifié 4 bits + adaptateur LoRA
+transformers>=4.56
+accelerate>=1.0
+bitsandbytes>=0.45
+peft>=0.21
+
+# Recherche : embeddings e5, reranker bge, index FAISS + BM25
+sentence-transformers>=5.0
+faiss-cpu>=1.8
+rank-bm25>=0.2.2
+numpy
+
+# Interface
+gradio>=6.0,<7
